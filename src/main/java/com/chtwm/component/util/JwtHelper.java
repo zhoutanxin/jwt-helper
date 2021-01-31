@@ -58,7 +58,7 @@ public class JwtHelper {
         //使用HmacSHA256签名算法生成一个HS256的签名秘钥Key
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
         //添加构成JWT的参数
-        Map<String, Object> headMap = new HashMap<>();
+        Map<String, Object> headMap = new HashMap();
         /*
             Header
             {
@@ -136,7 +136,7 @@ public class JwtHelper {
         if (claims != null) {
             //解密客户编号
             String decryptUserId = AESSecretUtil.decryptToStr((String)claims.get("userId"), SecretConstant.DATAKEY);
-            retMap = new HashMap<>();
+            retMap = new HashMap();
             //加密后的客户编号
             retMap.put("userId", decryptUserId);
             //客户名称
